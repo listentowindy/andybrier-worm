@@ -1,0 +1,50 @@
+1.make sure to make dir: 
+                    api: store the api files for getting features
+                    format: formatted files
+                    matrix: store the 4-gram matrix files of the file in "format"
+                    
+                    verify: store the api files for verifying our classify effective
+                    verifyFormat: store the formated files of the file in "verify"
+                    verifyMatrix: store the 4-gram matrix files of the file in "verifyFormat"
+                  
+                    weka:store the weka arff files.
+                    chart:store the chart pictures.
+                           
+2.MySQL table DDL
+(1)Table sequence: Store the 4-gram sequence and the appear numbers
+ 
+CREATE TABLE `sequence` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL DEFAULT '',
+  `benign` int(10) unsigned NOT NULL DEFAULT '0',
+  `virus` int(10) unsigned NOT NULL DEFAULT '0',
+  `worm` int(10) unsigned NOT NULL DEFAULT '0',
+  `trojan` int(10) unsigned NOT NULL DEFAULT '0',
+  `ig` double NOT NULL DEFAULT '0'
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+   
+(2)Table topig: store the top 500 ig from table sequence 
+  
+  CREATE TABLE `topig` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `ig` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+(3)Store precedure for select top ig 500 items from sequence  into topig 
+
+insert into topig(name,ig)
+select name,ig
+from sequence
+where ig!=0
+order by ig desc
+limit 0,500
+
+3.Number       
+         benign  virus  trojan    worm         total
+feather: 48      115       67      84          314      
+verify : 50      50        50      50          200
+total:   98      165       117     134         514                   

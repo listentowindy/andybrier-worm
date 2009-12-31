@@ -1,0 +1,7 @@
+GetModuleFileNameA
+GetModuleFileNameW
+GetProcAddress
+LoadLibraryW
+LoadLibraryA
+LoadLibraryExA
+LoadLibraryExW

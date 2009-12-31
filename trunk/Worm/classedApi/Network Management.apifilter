@@ -1,0 +1,15 @@
+WNetAddConnection2A
+NetShareEnum
+NetUseEnum
+NetWkstaUserGetInfo
+NetServerEnum
+WNetCloseEnum
+WNetOpenEnumA
+connect
+NetWkstaGetInfo
+NetUseGetInfo
+NetUseAdd
+NetApiBufferFree
+WNetCancelConnection2A
+NetUseDel
+WNetEnumResourceA
