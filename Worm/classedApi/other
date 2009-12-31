@@ -1,0 +1,8 @@
+NtQueryKey
+NtDeleteKey
+NtEnumerateKey
+NtOpenKey
+NtSetValueKey
+NtQueryValueKey
+NtCreateKey
+NtEnumerateValueKey
