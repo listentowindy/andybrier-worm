@@ -16,8 +16,8 @@ import weka.core.SelectedTag;
 
 public class VoteMain {
 
-	private String fileInstance = "weka/total.arff";
-	private Instances data = null; // contains the full dataset
+	private String fileInstance = "weka/total.arff";  // 要进行实验的数据
+	private Instances data = null;
 
 	// 分类器集合
 	private Classifier[] classfilers = { new J48(), new Id3(),

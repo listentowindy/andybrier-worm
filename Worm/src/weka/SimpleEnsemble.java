@@ -18,7 +18,11 @@ import weka.core.Instances;
 import weka.core.SelectedTag;
 
 
- 
+/**
+ * 建议使用VoteMain
+ * @author andy
+ *
+ */
 @Deprecated
 public class SimpleEnsemble {
 
