@@ -56,7 +56,7 @@ public class MyBKSMain {
 			//bks.filter();  //将每个分类分割为训练和测试
 		   	
 		   bks.train();   //训练样本
-		   bks.writeArrayToFile(bks.BKS);//将BKS矩阵print
+		   //bks.writeArrayToFile(bks.BKS);//将BKS矩阵print
 		 	double accury = bks.test();
 			/// bks.printArray(bks.BKS);  //将BKS矩阵输出到文件中
 		    //bks.writeArrayToFile(bks.BKS);//将BKS矩阵print
@@ -169,6 +169,7 @@ public class MyBKSMain {
 			int total = BKS[0][unit] + BKS[1][unit] + BKS[2][unit]
 					+ BKS[3][unit];
 
+			
 			double th = value / total;
 
 			// 分类是有正确的
@@ -177,6 +178,7 @@ public class MyBKSMain {
 			}
 
 		}
+		System.out.println(BKS[3][3333333]);
 		 
 		return (double)accuryNum / (double)totalNum; // 分类正确率
 
