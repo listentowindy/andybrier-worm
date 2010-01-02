@@ -15,7 +15,8 @@ import weka.core.Instance;
 import weka.core.Instances;
 
 /**
- * Behavior knowledge Space 算法的实现。
+ * Behavior knowledge Space 算法的实现。将数据拆分为训练和测试，将训练数据用BKS算法（基于不同的分类算法）
+ * 训练出BKS矩阵，然后利用矩阵，对测试数据就行测试，得出BKS的正确率。
  * 
  * @author andy
  * 
