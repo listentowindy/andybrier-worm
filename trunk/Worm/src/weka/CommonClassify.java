@@ -16,7 +16,7 @@ public class CommonClassify {
 	private   Classifier[] classfilers = { new J48(), new Id3(), new NaiveBayes(),
 		new LibSVM(), new SMO() };
 	
-	private Classifier classfiler = classfilers[0];
+	private Classifier classfiler = classfilers[2];
 	
 
 
@@ -36,7 +36,13 @@ public class CommonClassify {
 		}
 		
 		
-	
+	/**
+	 * 一般的分类问题：已经分割好了训练和测试
+	 * @param trainFile 训练文件
+	 * @param testFile  测试文件
+	 * @param clazz     文件类型
+	 * @throws Exception
+	 */
 	public void run(String trainFile,String testFile,String clazz) throws Exception{
 		
 

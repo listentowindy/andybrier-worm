@@ -30,7 +30,7 @@ public class MyBKSMain {
 			new NaiveBayes(), new SMO() };
 	
 	//选用性能最好的SMO算法作为BKS的基本算法
-	private Classifier classifier = classfilers[0]; 
+	private Classifier classifier = classfilers[2]; 
 
 	// 类别集合
 	private String classes[] = { "virus", "worm", "trojan", "benign" }; // 0-virus
@@ -178,7 +178,7 @@ public class MyBKSMain {
 			}
 
 		}
-		System.out.println(BKS[3][3333333]);
+		 
 		 
 		return (double)accuryNum / (double)totalNum; // 分类正确率
 
@@ -208,85 +208,7 @@ public class MyBKSMain {
 
 	}
 	
-	/**
-	 * 输出二维矩阵
-	 * @param t
-	 */
-	public void printArray(int[][] t){
-
-		for (int i = 0; i < t[0].length; i++) {
-		   System.out.print(" ");	
-		   System.out.print(i);	
-		}
-		System.out.print("\n");
-		
-		for (int i = 0; i < t.length; i++) {
-			
-			System.out.print(i);
-			System.out.print(" ");
-			for (int j = 0; j < t[0].length; j++) {
-				System.out.print((t[i][j]));
-				System.out.print(" ");
-			}
-			System.out.print("\n");
-
-		}
-		
-	}
-
-	/**
-	 * 矩阵输出到文件
-	 * @param t
-	 */
-	public void writeArrayToFile(int[][] t) {
-		File array = new File("weka/array2.txt");
-		PrintWriter pw = null;
-		try {
-			pw = new PrintWriter(array);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		for (int i = 0; i < t.length; i++) {
-			for (int j = 0; j < t[0].length; j++) {
-				pw.write(""+t[i][j]);
-				pw.write(" ");
-			}
-			pw.write("\n");
-
-		}
-
-		pw.flush();
-		pw.close();
-
-	}
-	
-	/**
-	 * 从文件中读出矩阵
-	 * @param file
-	 * @return
-	 * @throws Exception
-	 */
-	public int[][] loadArrayFromFile(String file) throws Exception{
-		BufferedReader fr = null;
-		try {
-			fr = new BufferedReader(new FileReader("weka/array.txt"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-   
-	    int bks[][] = new int[4][3334];
-		for (int i = 0; i < bks.length; i++) {
-			String line = fr.readLine();
-			for (int j = 0; j < bks[0].length; j++) {
-			  bks[i][j]=Integer.parseInt(line.split(" ")[j]);
-			}
-		}
-       
-		fr.close();
-		 return bks;
-		
-	}
+ 
 	
 	/**
 	 * 分割样本为测试和训练
