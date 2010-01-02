@@ -51,7 +51,7 @@ public class Classic {
 		 
 		for(Classifier c : classfilers){
 		   bean.runCrossValidate(c); //10则交叉验证
-		  // bean.run(c);             //自己分割训练和测试
+		  // bean.runDIY(c);             //自己分割训练和测试
 		} 
 		 
 
@@ -84,7 +84,7 @@ public class Classic {
 	 * 自己分割训练和测试
 	 * @param c
 	 */
-	public void run(Classifier c){
+	public void runDIY(Classifier c){
 		try {
 			    filterData(); //分割训练和测试
 			    c.buildClassifier(trainIns);
