@@ -5,7 +5,12 @@ import java.util.Random;
 
 import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
+import weka.classifiers.bayes.NaiveBayes;
+import weka.classifiers.functions.LibSVM;
+import weka.classifiers.functions.SMO;
 import weka.classifiers.meta.Bagging;
+import weka.classifiers.trees.Id3;
+import weka.classifiers.trees.J48;
 import weka.core.Instances;
 
 /**
@@ -18,7 +23,10 @@ public class BaggingMain {
 	
 	private String fileInstance =  "weka/total.arff";
     private Instances data = null; // contains the full dataset  
-	
+    
+    // 分类器集合
+	private static Classifier[] classfilers = { new J48(), new Id3(), new NaiveBayes(),
+			new LibSVM(), new SMO() };
 	/**
 	 * @param args
 	 */
@@ -43,9 +51,9 @@ public class BaggingMain {
 		data.setClassIndex(data.numAttributes() - 1);
 		
 		
-		//默认基分类器是：REPTree
-		Classifier bagging = new Bagging();
- 
+	
+		Bagging bagging = new Bagging();        //默认基分类器是：REPTree
+        bagging.setClassifier(classfilers[0]);  //设置基分类器
 		
 		Evaluation eval = null;
 		try {
