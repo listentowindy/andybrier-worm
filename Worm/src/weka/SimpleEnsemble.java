@@ -19,7 +19,7 @@ import weka.core.SelectedTag;
 
 
  
-
+@Deprecated
 public class SimpleEnsemble {
 
  
