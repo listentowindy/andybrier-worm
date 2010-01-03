@@ -9,7 +9,10 @@ import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
 import weka.core.Instance;
 import weka.core.Instances;
+import weka.core.Utils;
 import weka.core.converters.ArffLoader;
+import weka.filters.Filter;
+import weka.filters.supervised.instance.Resample;
 
 public class WekaUtil {
  
@@ -17,7 +20,7 @@ public class WekaUtil {
 	
 	/*
 
-     * 从.arff文件中获取样本Instances;
+     * 从.arff文件中获取样本Instances; 已经设置了classIndex
 
      * 1.fileName instances的文件名
 
@@ -35,7 +38,7 @@ public class WekaUtil {
 
 /*
 
-     * 从.arff文件中获取样本Instances;
+     * 从.arff文件中获取样本Instances; 已经设置了classIndex
 
      * 1.file 获得instances的File对象
 
@@ -72,7 +75,7 @@ public class WekaUtil {
 	
 	/*
 
-     * 获得一个Evaluation对象
+     * 
 
      * 1.h 一个已经训练过的分类器
 
@@ -161,9 +164,63 @@ public class WekaUtil {
 			e.printStackTrace();
 		}
 
-     
-
     }
+    
+    
+    
+    
+    
+  /**
+   * 随机分割样本为测试和训练
+   * @param data 要分割的样本
+   * @param trainPercentage 训练样本所占的比例.80表示80%
+   * @return 分割的训练样本和测试样本数组。数据第一项表示训练样本（train）
+   * @throws Exception
+   */
+	 public static Instances[] filterData(Instances data, int trainPercentage) 
+
+	    {
+
+		    Instances result[] = new Instances[2];
+		    
+	        Resample removePercentage =new Resample();
+	        
+	        removePercentage.setRandomSeed(2);
+	        
+	        try{
+	        //trainPercentage%作为训练
+	        String option = "-Z " +trainPercentage +" -no-replacement";
+	        String[] options = Utils.splitOptions(option);
+
+	        removePercentage.setOptions(options);
+
+	        removePercentage.setInputFormat( data );
+
+	        result[0] = Filter.useFilter( data, removePercentage);  
+
+	        //WekaUtil.writeToArffFile(this.getFile()+".train", trainIns );
+
+	        
+            //20%作为测试
+	        String optionForTest = "-Z " +(100-trainPercentage) +" -no-replacement";
+	        options = Utils.splitOptions(optionForTest);
+
+	        removePercentage.setOptions(options);
+	        removePercentage.setInputFormat( data );
+
+	        result[1] = Filter.useFilter( data,removePercentage);
+
+           //ekaUtil.writeToArffFile(this.getFile()+".test", testIns );
+	        
+	        }
+	        catch(Exception e){
+	           e.printStackTrace();
+	        	
+	        }
+
+	        return result;
+ 
+	    }
     
 	
 }
